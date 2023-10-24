@@ -1,4 +1,4 @@
-package threadMart;
+package thread.threadMart;
 
 public class Item {
     private String name;

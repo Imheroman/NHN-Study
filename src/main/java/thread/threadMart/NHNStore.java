@@ -1,4 +1,4 @@
-package threadMart;
+package thread.threadMart;
 
 public class NHNStore {
     public static void main(String[] args) {

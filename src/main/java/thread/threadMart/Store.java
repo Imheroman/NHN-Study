@@ -1,4 +1,4 @@
-package threadMart;
+package thread.threadMart;
 
 /*
 매장은 물건을 납품 받아서 판매한다.

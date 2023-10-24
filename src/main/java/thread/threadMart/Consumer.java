@@ -1,4 +1,4 @@
-package threadMart;
+package thread.threadMart;
 
 import java.util.concurrent.ThreadLocalRandom;
 
