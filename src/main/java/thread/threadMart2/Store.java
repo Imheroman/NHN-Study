@@ -11,7 +11,6 @@ package thread.threadMart2;
  */
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Semaphore;
 
@@ -19,41 +18,61 @@ public class Store {
     private Map<Item, Integer> items;
     private Semaphore producers;
     private Semaphore consumers;
-//    ThreadGroup consumers;
-//    ThreadGroup producers;
+    private ThreadGroup consumersThreadGroup;
+    private static final int consumersPermitNumbers = 5;
 
     public Store(int producerNumbers, int consumerNumbers) {
         items = new HashMap<>(producerNumbers);
-        consumers = new Semaphore(consumerNumbers);
-        producers = new Semaphore(producerNumbers);
+        producers = new Semaphore(1);
+        consumers = new Semaphore(1);
+        consumersThreadGroup = new ThreadGroup("Consumers thread group");
     }
 
-//    public void consumerEnter(Thread consumer) {
-//        System.out.println("소비자 --> " + consumer.getName() + "이 입장하였습니다.");
-//    }
-    public void consumerEnter() throws InterruptedException {
-        consumers.acquire();
+    public synchronized void enter(String consumerName) throws InterruptedException {
+        notify();
+
+        if (consumersThreadGroup.activeCount()< consumersPermitNumbers) {
+            Thread consumer = new Thread(consumersThreadGroup, new Consumer(consumerName, this));
+            consumer.start();
+        } else {
+            wait();
+        }
+
+
     }
 
-    public void producerEnter() throws InterruptedException {
-        producers.acquire();
-    }
-
-    public void exit(Consumer consumer) {
+    public void exit(Consumer consumer) { // 고객만 나가는 것으로 하기.
         System.out.println(consumer.getName() + "이 퇴장하였습니다.");
         consumer.stop();
     }
 
-    public synchronized void buy(Item item, int itemAmounts) { // 상인에게 물건을 사는 행위
+    public void buy(Item item, int itemAmounts) throws InterruptedException { // 상인에게 물건을 사는 행위
+//        producers.acquire();
+
         int oldAmounts = items.get(item);
-        items.replace(item, oldAmounts, itemAmounts+oldAmounts);
+        items.replace(item, oldAmounts, itemAmounts + oldAmounts);
+
+//        producers.release();
     }
 
-    public synchronized void sell() { // TODO: 물건을 구매하는 것은 동시에 1명만 가능하다.
-        if (items.size() > 0) {
-            items.remove(0);
-            System.out.println("상점이 물품을 판매하였습니다.");
+    public void sell(String itemName) throws InterruptedException { // TODO: 물건을 구매하는 것은 동시에 1명만 가능하다.
+        consumers.acquire();
+
+        for (Item searchItem : items.keySet()) {
+            if (searchItem.getName().equals(itemName)) {
+                int changeAmount = items.get(searchItem);
+
+                if (changeAmount > 0) {
+                    items.replace(searchItem, changeAmount - 1);
+                } else {
+                    System.err.println("판매 물품 수량 부족");
+                }
+
+                break;
+            }
         }
+
+        consumers.release();
     }
 
     public boolean ableToEnterConsumer() {

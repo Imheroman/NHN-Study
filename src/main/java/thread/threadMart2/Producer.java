@@ -28,16 +28,16 @@ public class Producer implements Runnable {
         this.itemAmounts += random.nextInt(8) + 1; // 1~9
     }
 
-    private int sellItem() {
+    private int sellItem() throws InterruptedException {
         int sellAmounts = random.nextInt(8) + 1;
 
         if (sellAmounts > itemAmounts) { // 재고보다 많이 팔려고 할 때
             while (sellAmounts > itemAmounts) {
                 sellAmounts--;
             }
-        } else {
-            this.store.buy(item, sellAmounts);
         }
+
+        this.store.buy(item, sellAmounts);
 
         return sellAmounts;
     }
@@ -49,16 +49,19 @@ public class Producer implements Runnable {
     @Override
     public void run() {
         int size = 0;
+
         while (ITEMS_SIZE > size) {
             interval = ThreadLocalRandom.current().nextInt(INTERVAL_TIMES, INTERVAL_TIMES * 10);
+
             try {
                 this.produce();
                 size += this.sellItem();
                 Thread.sleep(interval);
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
             }
         }
+
+        this.stop();
     }
 
     public Item getItem() {
