@@ -1,0 +1,21 @@
+= Introduction to programming using Java - Course2
+
+프로그래밍 기초와 영어 원서 읽기를 연습하기 위한 디렉토리
+
+Chapters::
+https://github.com/Imheroman/NHN-Study/tree/young/src/main/java/course2/chapter1[Chapter1] +
+https://github.com/Imheroman/NHN-Study/tree/young/src/main/java/course2/chapter2[Chapter2] +
+https://github.com/Imheroman/NHN-Study/tree/young/src/main/java/course2/chapter3[Chapter3] +
+https://github.com/Imheroman/NHN-Study/tree/young/src/main/java/course2/chapter4[Chapter4] +
+https://github.com/Imheroman/NHN-Study/tree/young/src/main/java/course2/chapter5[Chapter5] +
+https://github.com/Imheroman/NHN-Study/tree/young/src/main/java/course2/chapter5[Chapter5] +
+https://github.com/Imheroman/NHN-Study/tree/young/src/main/java/course2/chapter6[Chapter6] +
+https://github.com/Imheroman/NHN-Study/tree/young/src/main/java/course2/chapter7[Chapter7] +
+https://github.com/Imheroman/NHN-Study/tree/young/src/main/java/course2/chapter8[Chapter8] +
+https://github.com/Imheroman/NHN-Study/tree/young/src/main/java/course2/chapter9[Chapter9] +
+https://github.com/Imheroman/NHN-Study/tree/young/src/main/java/course2/chapter10[Chapter10] +
+https://github.com/Imheroman/NHN-Study/tree/young/src/main/java/course2/chapter11[Chapter11] +
+
+
+참고사이트 ::
+https://math.hws.edu/javanotes/[Course2 Site]
