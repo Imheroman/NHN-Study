@@ -13,7 +13,7 @@
 - ~ 23년 10월 26일: Thread 공부와 Course1 공부
 - 23년 10월 27일 ~: Course2 공부와 Networking Programming
 
-[10월 공부 계획]
+[10월 공부 과정]
 
 
 
