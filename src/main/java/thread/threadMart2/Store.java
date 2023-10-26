@@ -29,7 +29,7 @@ public class Store {
     }
 
     public synchronized void enter(String consumerName) throws InterruptedException {
-        notify();
+        notifyAll();
 
         if (consumersThreadGroup.activeCount()< consumersPermitNumbers) {
             Thread consumer = new Thread(consumersThreadGroup, new Consumer(consumerName, this));
@@ -37,8 +37,6 @@ public class Store {
         } else {
             wait();
         }
-
-
     }
 
     public void exit(Consumer consumer) { // 고객만 나가는 것으로 하기.
@@ -47,12 +45,19 @@ public class Store {
     }
 
     public void buy(Item item, int itemAmounts) throws InterruptedException { // 상인에게 물건을 사는 행위
-//        producers.acquire();
+        producers.acquire();
 
-        int oldAmounts = items.get(item);
-        items.replace(item, oldAmounts, itemAmounts + oldAmounts);
+        if (items.containsKey(item)) {
+            int oldAmounts = items.get(item);
+            items.replace(item, oldAmounts, itemAmounts + oldAmounts);
 
-//        producers.release();
+            System.out.println("기존의 물품(" + item.getName() +")이 " + itemAmounts + "만큼 추가 납품되었습니다.");
+        } else {
+            items.put(item, itemAmounts);
+            System.out.println("새로운 물품이 납품되었습니다. --> " + item.getName());
+        }
+
+        producers.release();
     }
 
     public void sell(String itemName) throws InterruptedException { // TODO: 물건을 구매하는 것은 동시에 1명만 가능하다.
