@@ -1,19 +1,26 @@
 package thread.threadMart;
 
 public class NHNStore {
+    public static final int ENTERANCE_MAX_NUMBERS = 5;
+    public static final int CONSUMER_THREADS_NUMBERS = 6;
+    public static final int PRODUCER_THREADS_NUMBERS = 5;
+
     public static void main(String[] args) {
-        ThreadGroup tg;
+        ThreadGroup consumerThreadGroup;
+        ThreadGroup ProducerThreadGroup;
         Store store = new Store();
 
         Thread producer = new Thread(new Producer(store));
         producer.start();
 
-        for (int i = 1; i <= 3; i++) {
-            tg = store.getConsumers();
+//        for // Producer threads용 반복문
 
-            if (tg.activeCount() < 5) {
+        for (int i = 1; i <= CONSUMER_THREADS_NUMBERS; i++) {
+            consumerThreadGroup = store.getConsumers();
+
+            if (consumerThreadGroup.activeCount() < ENTERANCE_MAX_NUMBERS) {
                 String consumerName = "Consumer_" + i;
-                Thread consumer = new Thread(tg, new Consumer(consumerName, store));
+                Thread consumer = new Thread(consumerThreadGroup, new Consumer(consumerName, store));
                 consumer.start();
                 store.enter(consumer);
             } else {
@@ -32,6 +39,6 @@ public class NHNStore {
             }
         }
         producer.stop();
-        System.out.println("마트 영업시간이 종료됐습니다.");
+        System.out.println("영업이 종료됐습니다.");
     }
 }
