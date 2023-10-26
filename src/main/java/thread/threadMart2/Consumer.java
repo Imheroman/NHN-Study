@@ -23,7 +23,6 @@ public class Consumer implements Runnable {
     }
 
     private void itemBuying() throws InterruptedException {
-        System.out.println("This is itemBuying() int Consumer");
         store.sell(NHNStore.PRODUCT_NAMES[(int) (Math.random() * 4)]);
     }
 
@@ -34,14 +33,14 @@ public class Consumer implements Runnable {
     @Override
     public void run() {
         while (count < END_NUMBERS) { // 물품 구매 횟수
-            interval = ThreadLocalRandom.current().nextInt(INTERVAL_TIMES, INTERVAL_TIMES * 10);
-            System.err.println("This is before Buying()");
+            interval = ThreadLocalRandom.current().nextInt(INTERVAL_TIMES + 2, INTERVAL_TIMES * 10 + 2);
             try {
                 itemBuying();
             } catch (InterruptedException ignore) {
             }
-            System.err.println("This is after Buying()");
             count++;
+
+            System.out.println(Thread.currentThread().getName() + "이 물품을 구매하였습니다.");
 
             try {
                 Thread.sleep(interval);

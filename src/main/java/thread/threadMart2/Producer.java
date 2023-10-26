@@ -51,7 +51,8 @@ public class Producer implements Runnable {
         int size = 0;
 
         while (ITEMS_SIZE > size) {
-            interval = ThreadLocalRandom.current().nextInt(INTERVAL_TIMES, INTERVAL_TIMES * 10);
+            interval = ThreadLocalRandom.current().nextInt(INTERVAL_TIMES + 2, INTERVAL_TIMES * 10);
+            Thread.yield();
 
             try {
                 this.produce();

@@ -19,23 +19,21 @@ public class Store {
     private Semaphore producers;
     private Semaphore consumers;
     private ThreadGroup consumersThreadGroup;
+    private ThreadGroup producersThreadGroup;
     private static final int consumersPermitNumbers = 5;
 
     public Store(int producerNumbers, int consumerNumbers) {
         items = new HashMap<>(producerNumbers);
         producers = new Semaphore(1);
-        consumers = new Semaphore(1);
+        consumers = new Semaphore(consumersPermitNumbers);
         consumersThreadGroup = new ThreadGroup("Consumers thread group");
+        producersThreadGroup = new ThreadGroup("Producers thread group");
     }
 
     public synchronized void enter(String consumerName) throws InterruptedException {
-        notifyAll();
-
         if (consumersThreadGroup.activeCount()< consumersPermitNumbers) {
             Thread consumer = new Thread(consumersThreadGroup, new Consumer(consumerName, this));
             consumer.start();
-        } else {
-            wait();
         }
     }
 
@@ -69,6 +67,8 @@ public class Store {
 
                 if (changeAmount > 0) {
                     items.replace(searchItem, changeAmount - 1);
+
+                    System.err.println(itemName + "을 고객이 사갔습니다.");
                 } else {
                     System.err.println("판매 물품 수량 부족");
                 }
@@ -90,5 +90,13 @@ public class Store {
 
     public Semaphore getConsumers() {
         return consumers;
+    }
+
+    public ThreadGroup getConsumersThreadGroup() {
+        return consumersThreadGroup;
+    }
+
+    public ThreadGroup getProducersThreadGroup() {
+        return producersThreadGroup;
     }
 }

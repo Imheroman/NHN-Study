@@ -1,7 +1,7 @@
 package thread.threadMart2;
 
 public class NHNStore {
-    public static final int CONSUMER_THREADS_NUMBERS = 6;
+    public static final int CONSUMER_THREADS_NUMBERS = 8;
     public static final int PRODUCER_THREADS_NUMBERS = 4;
     public static final String [] PRODUCT_NAMES = {
             "우유",
@@ -12,18 +12,18 @@ public class NHNStore {
 
     public static void main(String[] args) throws InterruptedException {
         Store store = new Store(PRODUCER_THREADS_NUMBERS, CONSUMER_THREADS_NUMBERS);
+        ThreadGroup consumers = store.getConsumersThreadGroup();
+        ThreadGroup producers = store.getProducersThreadGroup();
 
         for (String productName : PRODUCT_NAMES) { // 상인들 생성 및 참여하는 반복문
-            Thread producer = new Thread(new Producer(store, productName));
+            Thread producer = new Thread(producers, new Producer(store, productName));
             producer.start();
-            System.out.println("상인 --> " + productName + " 상인이 입장하였습니다.");
+//            System.out.println("상인 --> " + productName + " 상인이 입장하였습니다.");
         }
 
         for (int i = 1; i <= CONSUMER_THREADS_NUMBERS; i++) { // 소비자들 생성 및 참여하는 반복문
-            if (store.ableToEnterConsumer()) {
+            if (consumers.activeCount() < 5) {
                 String consumerName = "Consumer_" + i;
-//                Thread consumer = new Thread(new Consumer(consumerName, store));
-//                consumer.start();
                 store.enter(consumerName);
                 System.out.println("소비자 --> " + consumerName + "이 입장하였습니다.");
             } else {
@@ -37,7 +37,9 @@ public class NHNStore {
         }
 
         while (true) {
-            if (store.getConsumers().availablePermits() == CONSUMER_THREADS_NUMBERS) {
+            if (consumers.activeCount() == 0) {
+//                producers.destroy();
+                producers.stop();
                 break;
             }
         }
