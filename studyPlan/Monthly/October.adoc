@@ -5,8 +5,8 @@
 | 날짜 | 계획 or 공부 내용
 |  |
 | https://github.com/Imheroman/NHN-Study/blob/young/studyPlan/Daily/2023_10_26.adoc[10월 26일] | Thread NHN mart 공부 + 깃 구조 정리
-| 10월 27일 | 데이터베이스 공부
-| 10월 28일 | 25
+| 10월 27일 | 쓰레드 보충 공부
+| 10월 28일 | 데이터베이스 공부 + 리팩터링2
 | 10월 29일 | 25
 ||
 | 10월 30일 | 25
