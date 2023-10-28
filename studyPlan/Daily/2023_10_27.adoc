@@ -1,7 +1,12 @@
-쓰레드 공부
+https://github.com/Imheroman/NHN-Study/tree/young/src/main/java/thread/myThread[쓰레드 공부]
 
 10월 27일 쓰레드와 공유 자원에 대해 공부했던 내용들
 
 공유 자원의 덧셈과 뺄셈 연산이 공유자원에서 진행됐어야 한다고 한다.
 더 자세하게 공부해보기
+
+- 세마포어란
+- 공유 자원이란 등
+
+
 
