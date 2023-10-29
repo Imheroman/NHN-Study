@@ -1,0 +1,49 @@
+# Objects and Object-oriented Programming
+
+### Software engineering
+
+- 잘 작동되고, 올바른 구조이고, 잘 작성된 프로그램인지
+
+### Structured programming
+
+- 큰 문제들을 몇 개의 부분으로 조각내어 문제를 해결하는 방식
+
+### top-down programming
+
+- 작게 쪼개나가면서 새로운 작은 문제점들을 해결할 수 있음?
+- 다른 프로젝트에서 재사용할 수 없는 문제점 발생
+
+### Bottom-up design
+
+- bottom부터 시작하기 때문에 이미 문제들을 해결
+- 재사용 부품들을 module화 된다.
+→ 다른 시스템에 사용할 수 있는 큰 시스템의 부품
+
+module을 사용하는 프로그램은 subroutine을 호출함으로써 간접적으로 계산된 데이터를 사용하기 때문에, 데이터를 보호할 수 있다.
+
+### Object-Oriented Programming (OOP)
+
+- object를 중요 개념으로 생각한다.
+- OOP의 관점에서 Program은 objects의 collection이다.
+
+polymorphism → 다른 objects들이 같은 message를 다른 방법들로 반응하는 것
+
+### Inheritance
+
+- software componets를 reusing하는 데에 관련된 문제이다.
+- organizing a program에 강력한 수단
+
+---
+
+# The Modern User Interface
+
+Command-Line Interface(GLI) → command를 typing하고 response를 얻었던 computer interface
+
+Graphical-User Interface(GUI) → user들이 사용하기 쉽도록 screen에 interface들을(scroll bars, menus …) 그려놓은 것
+
+GUI 프로그램은 event handlers(다양한 events들이 발생할 때 반응하도록 이뤄진 것)들로 구성되어 있다.
+
+---
+
+
+

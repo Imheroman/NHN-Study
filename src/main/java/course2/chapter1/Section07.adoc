@@ -1,0 +1,29 @@
+# The Internet and Beyond
+
+### Protocols
+
+- Internet에서 communication을 하기 위한 것
+- 두 개의 컴퓨터가 communicate하기 위해서는 같은 방식의 protocol을 사용해야 한다.
+- 가장 기본적인 protocol은 Internet Protocol(IP)이다. → data를 어떻게 전송하고 받을건지에 대한 protocol
+- Transmission Control Protocol(TCP) → IP를 사용하여 전송된 data가 error없이 수신되도록 보장하는 protocol
+- 위의 두 protocol이 합쳐져서 TCP/IP Protocol
+
+### Packet
+
+- 인터넷상에서 모든 communication은 packet 형식으로 이뤄져있다.
+- 받는 사람의 data의 정보를 포함하고 있다. → 어디로 data를 보내야 하는지 파악해야 하기 때문에.
+- 주소를 outside에 두고, message(data)를 inside에 보관한다.
+- 크기가 큰 message는 나뉘어져서 보내진다.
+
+### domain names
+
+- 사람들이 number보다 names를 사용하기 때문에 IP 주소를 domain names로 변경하였다.
+- 서버에 domain name을 전송하면 일치하는 IP adress를 찾아준다.
+→ 때문에 컴퓨터가 IP 주소로 접근할 수 있는 것.
+
+### Web browser
+
+- User interface to Web
+- Microsoft Edge, Firefox, Chrome, Safari …
+- user가 페이지에 대한 정보를 요청할 때 사용
+- HyperText Transfer Protocol(HTTP)을 사용 → web server와 요청을 주고받기 위해서
