@@ -1,0 +1,39 @@
+# The Java Virtual Machine
+
+Compiler → High-level language 를 Machine Language로 변환시켜 주는 친구
+
+Interpreter → CPU같이 명령어를 1줄씩 읽어서 작동되는 친구
+
+### Java Virtual Machine(JVM)
+
+- 자바를 만든 디자이너들은 compiling 방식과 interpreting 방식을 둘 다 사용하기로 했다.
+- 자바로 작성된 프로그램들은 기계어로 컴파일 되는데, 이 기계어는 실제 컴퓨터가 사용하는 기계어가 아니다.
+- 때문에 이 컴파일러를 virtual이라고 표현하였고 Java Virtual Machine이라고 지칭한다.
+- 컴파일된 기계어는 Java bytecode라고 지칭한다.
+→ 실제 컴퓨터가 아닌 JVM이 실행하는 bytecode
+- 실제 컴퓨터가 필요한 것들은 interpreter에 의해 Java bytecode를 제공한다?
+
+.Java bytecode로 변역되어 각 OS의 기계어로 변경되는 사진
+image::./images/3.differentTypeOfComputer.png[Different type of Computer]
+
+---
+
+# Fundamental Building Blocks of Programs
+
+### Variable
+
+- just a memory location. 쉽게 referred하고 프로그램에 사용될 수 있도록 이름 붙여진 메모리 공간
+- data를 담고 있는 일종의 box → 메모리의 어느 위치에 있는 지는 모름
+
+### Type
+
+- 어떤 종류의 data인지
+- Integer, Floating point …
+
+프로그램 → 명령어들의 연속
+
+### Control structure
+
+- control의 흐름을 변경하는 특별한 명령어
+- 기본적인 type으로 loops(반복), branches(조건 → condition test and decide)가 있다.
+…

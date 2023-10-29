@@ -1,0 +1,31 @@
+= 23.10.29(일) Asynchronous Events: polling Loops and Interrupts
+
+preemptive multitasking
+
+timesharing
+
+asynchronous events
+
+### Device driver
+
+- CPU는 device driver를 이용하여 컴퓨터와 연결된 모든 devices들을 기계어로 조작할 수 있다.
+- device driver를 설치하지 않는다면 CPU는 다른 device들과 소통할 수 없기 때문에 다른 device들은 작동되지 않는다.
+
+---
+
+### polling
+
+- CPU가 들어오는 데이터를 계속해서 확인하고, 원하는 데이터가 들어왔을 때 그 데이터를 process하는 것.
+- 하지만 CPU가 데이터가 들어올 때 까지 계속해서 기다리며 많은 시간을 써야하므로 효과적인 방법이 아님.
+
+### interrupts
+
+- polling처럼 계속 기다릴 수 없으므로 데이터가 입력될 때 interrupt signal을 보내는 방식
+- signal이 감지되면 CPU는 하던 일을 멈춰두고 interrupt를 보낸 데이터에 반응하게 된다.
+- CPU가 asynchronous events(비동기식) 작동을 할 수 있게 도움
+
+### Thread
+
+- CPU의 각각의 업무를 실행하는 친구.
+- CPU의 코어는 Thread의 갯수를 의미함
+- multitasking and multiprocessing을 하는데 중요한 역할을 한다.
