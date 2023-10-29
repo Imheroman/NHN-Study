@@ -7,9 +7,9 @@
 | https://github.com/Imheroman/NHN-Study/blob/young/studyPlan/Daily/2023_10_26.adoc[10월 26일] | Thread NHN mart 공부 + 깃 구조 정리
 | https://github.com/Imheroman/NHN-Study/blob/young/studyPlan/Daily/2023_10_27.adoc[10월 27일] | 쓰레드 보충 공부|
 https://github.com/Imheroman/NHN-Study/blob/young/studyPlan/Daily/2023_10_28.adoc[10월 28일] | 알고리즘 공부
-| 10월 29일 | 휴식 or (Course02-Section01)
+| https://github.com/Imheroman/NHN-Study/blob/young/studyPlan/Daily/2023_10_29.adoc[10월 29일] | Course02-Section01 마무리
 ||
-| 10월 30일 | Course02-Section01 마무리
+| 10월 30일 | Course02-Section02 + 몬테카를로
 | 10월 31일 | Database ERD 공부 + Course02-Section02?|
 ===
 
