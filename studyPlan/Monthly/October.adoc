@@ -9,8 +9,8 @@
 https://github.com/Imheroman/NHN-Study/blob/young/studyPlan/Daily/2023_10_28.adoc[10월 28일] | 알고리즘 공부
 | https://github.com/Imheroman/NHN-Study/blob/young/studyPlan/Daily/2023_10_29.adoc[10월 29일] | Course02-Section01 마무리
 ||
-| 10월 30일 | Course02-Section02 + 몬테카를로
-| 10월 31일 | Database ERD 공부 + Course02-Section02?|
+| 10월 30일 | Course02_Chapter02_Section01~04
+| 10월 31일 | Chapter02_Section01~04 + (Database ERD 공부 or 몬테카를로 문제 풀이)|
 ===
 
 https://github.com/Imheroman/NHN-Study/blob/young/studyPlan/Monthly/November.adoc[11월 계획으로 이동]
