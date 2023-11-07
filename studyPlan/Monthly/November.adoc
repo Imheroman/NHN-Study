@@ -12,7 +12,7 @@
 ||
 | https://github.com/Imheroman/NHN-Study/tree/young/src/main/java/course2/chapter3[11월 06일] | Course02 - Chapter03
 | https://github.com/Imheroman/NHN-Study/tree/young/src/main/java/course2/chapter4[11월 07일] | Course02 - Chapter04 + Networking
-| https://github.com/Imheroman/NHN-Study/tree/young/src/main/java/course2/chapter5[11월 08일] |
+| https://github.com/Imheroman/NHN-Study/tree/young/src/main/java/course2/chapter5[11월 08일] | Course02 - Chapter05 (Not yet)
 | 11월 09일 |
 | 11월 10일 |
 | 11월 11일 |
