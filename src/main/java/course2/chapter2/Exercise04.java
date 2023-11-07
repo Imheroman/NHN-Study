@@ -3,6 +3,10 @@ package course2.chapter2;
 import java.util.Scanner;
 
 public class Exercise04 {
+    public static final int quarter = 25;
+    public static final int dime = 10;
+    public static final int nickels = 5;
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -20,7 +24,7 @@ public class Exercise04 {
         int pennies = sc.nextInt();
 
         // 동전 금액을 계산
-        double totalCents = quarters * 25 + dimes * 10 + nickels * 5 + pennies;
+        double totalCents = quarters * quarter + dimes * dime + nickels * nickels + pennies;
         double totalDollars = totalCents / 100.0;
 
         // 결과 출력
