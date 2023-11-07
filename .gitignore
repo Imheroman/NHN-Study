@@ -211,4 +211,7 @@ buildNumber.properties
 .history
 .ionide
 
+###
+*.iml
+
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,macos,intellij,maven,java
