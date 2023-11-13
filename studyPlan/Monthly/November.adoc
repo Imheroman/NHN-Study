@@ -16,9 +16,9 @@
 | 11월 09일 | DB 수업
 | 11월 10일 | Course02 - Chapter05 + DB 과제
 | https://28-dd.tistory.com/8[11월 11일] | 블로그 작성 - Mutable vs Immutable, GUAVA 봐보기
-| 11월 12일 | Functional Programming(Monte Carlo from NHN Academy) 연습, GUAVA 봐보기
+| 11월 12일 | Functional Programming(Monte Carlo from NHN Academy) - generate, GUAVA 봐보기
 ||
-| 11월 13일 |
+| 11월 13일 | Course02 - Chapter05
 | 11월 14일 |
 | 11월 15일 |
 | 11월 16일 |
