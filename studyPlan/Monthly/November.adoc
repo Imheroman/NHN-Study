@@ -18,9 +18,9 @@
 | https://28-dd.tistory.com/8[11월 11일] | 블로그 작성 - Mutable vs Immutable, GUAVA 봐보기
 | 11월 12일 | Functional Programming(Monte Carlo from NHN Academy) - generate, GUAVA 봐보기
 ||
-| 11월 13일 | Course02 - Chapter05
-| 11월 14일 |
-| 11월 15일 |
+| https://github.com/Imheroman/NHN-Study/tree/young/src/main/java/course2/chapter5[11월 13일] | Course02 - Chapter05 + monte carlo
+| 11월 14일 | Monte Carlo
+| 11월 15일 | Monte Carlo 제출
 | 11월 16일 |
 | 11월 17일 |
 | 11월 18일 |
