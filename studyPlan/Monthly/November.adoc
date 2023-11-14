@@ -20,8 +20,8 @@
 ||
 | https://github.com/Imheroman/NHN-Study/tree/young/src/main/java/course2/chapter5[11월 13일] | Course02 - Chapter05 + monte carlo
 | 11월 14일 | Monte Carlo
-| 11월 15일 | Monte Carlo 제출
-| 11월 16일 |
+| 11월 15일 | Monte Carlo
+| 11월 16일 | Monte Carlo 제출 + DB(?)
 | 11월 17일 |
 | 11월 18일 |
 | 11월 19일 |
