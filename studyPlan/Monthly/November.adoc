@@ -25,8 +25,8 @@
 | 11월 17일 | DB 수업
 | 11월 18일 |
 | https://28-dd.tistory.com/9[11월 19일] | 블로그 작성
-| 11월 20일 |
 ||
+| https://github.com/Imheroman/NHN-Study/tree/young/src/main/java/networking[11월 20일] |DB Query assignment + network 공부
 | 11월 21일 |
 | 11월 22일 |
 | 11월 23일 |

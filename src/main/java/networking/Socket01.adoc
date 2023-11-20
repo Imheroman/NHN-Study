@@ -1,0 +1,67 @@
+# 23.11.20(월) 1. Socket~
+
+# 1. Socket
+
+- 32비트 숫자로 지정 → 짝수 socket은 수신, 홀수 socket은 송신
+- 운영체제에서 스풀링되는 물리적인 장치로의 I/O
+- 프로세스 간에 통신을 위한 절차
+
+# 2. Socket Type
+
+### Datagram Sockets
+
+- UDP를 사용하는 무연결(서로 연결되지 않는) socket → 신뢰성을 보장하지 않는다.
+- Datagram socket에서 보내거나 받은 packet은 개별적으로 주소가 지정되고 라우팅됨
+- Datagram socket에서는 순서와 신뢰성이 보장되지 않음(UDP이기 때문에) → 한 기계 또는 프로세스에서 다른 기계로 전송되는 여러 packet이 임의의 순서로 도착하거나 전혀 도착하지 않을 수 있음
+
+### Stream Sockets
+
+- Connection-oriented Sockets
+- TCP(Transmission Control Protocol) → 신뢰성 보장
+- SCTP(Stream Control Transmission Protocol)
+- DCCP(Datagram Congestion Control Protocol)
+- 오류 없는 데이터 전송, packet 순서, 흐름 제어 보장 → TCP니까
+- 송신된 순서에 따라 중복되지 않게 데이터를 수신함으로 이에 따른 overhead 발생
+
+### **Raw Sockets**
+
+- 프로토콜별 전송 계층 형식 없이 IP packet을 직접 보내고 받을 수 있음
+- 전송 계층 프로토콜(예: TCP, UDP)에 상관없이 IP packet으로 주고 받음
+- Berkeley sockets을 기반으로 하는 API는 raw sockets을 지원하며, 윈도우 XP는 2001년 윈삭 인터페이스에 구현된 raw sockets 지원을 통해 출시되었으나, 3년 후 마이크로소프트는 보안상의 문제로 row sockets 지원을 제한
+- 보안 관련 응용 프로그램에서 사용
+- 일반적으로 네트워크 장비에서 사용할 수 있으며 IGMP와 OSPF와 같은 라우팅 프로토콜에 사용
+- ping 유틸리티에 의해 사용되는 인터넷 제어 메시지 프로토콜(ICMP)에도 사용
+
+# 3. Socket 통신
+
+### Server Socket 동작 과정
+
+1. socket() 함수를 이용하여 소켓 생성
+2. bind() 함수를 이용해 대기 소켓의 IP 주소와 port를 설정
+3. listen() 함수로 클라이언트 소켓 연결 요청 대기
+4. Client socket 연결 요청이 오면 accept() 함수를 이용해 연결을 승인하고, 요청은 client socket과 통신을 위한 소켓을 생성
+5. Server socket은 listen() 함수를 통해 추가적인 연결 요청에 대비하고, 생성된 socket은 연결된 client socket과 데이터를 주고받음
+6. Client socket이나 생성된 socket을 닫으면 연결되어 있던 상대 socket도 닫힘
+
+### Client Socket 동작 과정
+
+1. socket() 함수를 이용하여 socket 생성
+2. connect() 함수를 이용해 지정된 sever에 연결 요청 전송
+3. Server에서 연결을 받아들이면 데이터 송수신 시작
+4. 데이터 송수신이 완료되거나 상대 socket의 닫힘이 감지되면 socket을 닫음
+
+# 4. Java Socket 통신
+
+### try with resources 사용하는 이유
+
+- GC의 회수 시점이 언제일지 모르기 때문에 메모리 누수가 발생할 수 있다.
+
+```java
+try (Scanner sc = new Scanner(new File("test.txt")) {
+} catch (FileNotFoundException e) {
+}
+```
+
+와 같이 try() 속에 넣어주면 try가 끝나면서 sc가 사용한 메모리를 반환함.
+
+…
