@@ -1,0 +1,95 @@
+<ul>
+    <li>우유</li>
+    <li>계란</li>
+    <li>빵</li>
+    <li>후무스(중동의 김치)</li>
+    <li>베이컨</li>
+</ul>
+
+<ol>
+    <li>Avatar</li>
+    <li>Avengers: Endgame</li>
+    <li>Titanic</li>
+    <li>Starwars: Force Awaken</li>
+    <li>Avengers: Infinity War</li>
+</ol>
+
+<!-- 기계가 읽을 수 있는 명확한 시간/날짜 첨부 -->
+<!-- Standard simple date -->
+<p>
+    <time datetime="2016-01-20">20 January 2016</time> <!-- Just year and month --></p>
+<p>
+    <time datetime="2016-01">January 2016</time>
+</p>
+<!-- Just month and day -->
+<p>
+    <time datetime="01-20">20 January</time>
+</p>
+<!-- Just time, hours and minutes -->
+<p>
+    <time datetime="19:30">19:30</time>
+</p>
+<!-- You can do seconds and milliseconds too! -->
+<time datetime="19:30:01.856">19:30:01.856</time> <!-- Date and time -->
+<p>
+    <time datetime="2016-01-20T19:30">7.30pm, 20 January 2016</time>
+</p>
+<!-- Date and time with timezone offset-->
+<p>
+    <time datetime="2016-01-20T19:30+01:00">7.30pm, 20 January 2016 is 8.30pm in France</time>
+</p>
+<!-- Calling out a specific week number-->
+<p>
+    <time datetime="2016-W04">The fourth week of 2016</time>
+</p>
+
+<a href="링크할 주소">텍스트 또는 이미지</a>
+
+<a href="https://movie.daum.net/moviedb/main?movieId=94626"> <img src="./images/TheMartian.jpeg" /></a>
+<!-- local에서 이미지 참조해서 링크 걸기 -->
+<a href="https://movie.daum.net/moviedb/main?movieId=94626"> <img src="http://t1.daumcdn.net/movie/42d4e1f21810332ab6a86153005b30e8d902be21" /></a>
+<!-- remote에서 이미지 참조해서 링크 걸기 -->
+
+<a mailto : "이메일 주소"></a>
+<p>메일을 보내시려면 <a href="mailto:marco@nhnacademy.com">이쪽</a>으로 보내주세요</p>
+<!-- emain 링크 -->
+
+<style>
+    *{
+        font-size:20pt;
+    }
+    table,th,td {
+        border: 1px double black;
+        width: 800px;
+    }
+</style>
+
+<table>
+    <catpion>전 세계 박스 오피스</catpion>
+    <thead>
+    <tr>
+        <th>제목</th>
+        <th>연도</th>
+        <th>감독</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>아바타</td>
+        <td>2009</td>
+        <td>제임스 카메론</td>
+    </tr>
+    <tr>
+        <td>어벤저스: 엔드게임</td>
+        <td>2019</td>
+        <td>루소 형제</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td>foot</td>
+        <td>foot</td>
+        <td>foot</td>
+    </tr>
+    </tfoot>
+</table>

@@ -6,6 +6,10 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+참고 사이트
+https://ssons.tistory.com/49
+ */
 public class Server {
     private final ServerSocket serverSocket;
     public static final int serverPort = 1234;
