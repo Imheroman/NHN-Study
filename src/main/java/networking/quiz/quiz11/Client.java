@@ -7,10 +7,12 @@ public final class Client implements Runnable {
     private final Socket socket;
     public static final int bufferSize = 2048;
     private final String name;
+    private final Socket serverSocket;
 
-    public Client(String name, int port) {
+    public Client(String name, int port, Socket serverSocket) {
         this.name = name;
         this.socket = initSocket(port);
+        this.serverSocket = serverSocket;
     }
 
     private Socket initSocket(int port) {

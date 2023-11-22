@@ -1,49 +1,36 @@
 package networking.test;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.Socket;
 
-
 public class Client {
-    public static final int port = 1234;
-    public static final String host = "localhost";
 
     public static void main(String[] args) {
-        Thread server = new Thread(new Server(port));
-        server.run();
-        try (Socket client = new Socket(host, port);
-             BufferedInputStream input = new BufferedInputStream(client.getInputStream());
-             BufferedOutputStream output = new BufferedOutputStream(client.getOutputStream());
-             BufferedReader terminalIn = new BufferedReader(new InputStreamReader(System.in));
-             BufferedWriter terminalOut = new BufferedWriter(new OutputStreamWriter(System.out));
-        ) {
-            System.out.println("Connection completes on server / This is client");
+        String serverAddress = "localhost";
+        int serverPort = 1234;
 
-            byte[] buffer = new byte[networking.quiz.Quiz09.bufferSize];
-            int length = 0;
-//
-//
-//            while ((length = input.read(buffer)) > 0) {
-//                output.write(buffer, 0, length);
-//                output.flush();
-//            }
-            String line;
+        try {
+            Socket socket = new Socket(serverAddress, serverPort);
+            System.out.println("서버에 연결되었습니다.");
 
-            System.out.print("Client Input >> ");
-            while ((length = input.read(buffer)) > 0) {
-                terminalOut.write(length);
-                terminalOut.flush();
+            // 클라이언트의 입력을 서버로 전송
+            OutputStream output = socket.getOutputStream();
+            output.write("Hello, Server!".getBytes());
 
-                line = terminalIn.readLine();
-                output.write(line.getBytes());
-                output.flush();
-                System.out.print("Client Input >> ");
+            // 서버로부터의 응답을 받아 출력
+            InputStream input = socket.getInputStream();
+            byte[] buffer = new byte[1024];
+            int bytesRead = input.read(buffer);
+            while ((bytesRead = input.read(buffer)) > 0) {
+                System.out.println("서버 응답: " + new String(buffer, 0, bytesRead));
             }
+            // 소켓 닫기
+            socket.close();
 
         } catch (IOException e) {
-            e.getStackTrace();
+            e.printStackTrace();
         }
-
-
     }
 }

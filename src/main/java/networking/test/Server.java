@@ -1,60 +1,67 @@
 package networking.test;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class Server implements Runnable {
-    private ServerSocket serverSocket;
-    private final static int bufferSize = 2048;
+public class Server {
 
-    public Server(int port) {
-        excuteServer(port);
-    }
+    public static void main(String[] args) {
+        int portNumber = 1234;
 
-    private void excuteServer(int port) {
         try {
-            this.serverSocket = new ServerSocket(port);
-        } catch (IOException e) {
-            e.getStackTrace();
-        }
-    }
+            ServerSocket serverSocket = new ServerSocket(portNumber);
+            System.out.println("서버가 포트 " + portNumber + "에서 실행 중...");
 
-    public void service() {
-        try (Socket socket = this.serverSocket.accept();
-             BufferedWriter output = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-             BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        ) {
-            String line;
+            while (true) {
+                // 클라이언트가 연결될 때까지 대기
+                Socket clientSocket = serverSocket.accept();
+                System.out.println("클라이언트가 연결되었습니다.");
 
-            while (!(line = input.readLine()).isEmpty()) {
-                System.out.println("From User >> " + line);
-                output.write(line);
-                output.flush();
+                // 클라이언트 연결을 처리하는 새로운 스레드 생성
+                new Thread(new ClientHandler(clientSocket)).start();
             }
 
-
         } catch (IOException e) {
-            e.getStackTrace();
+            e.printStackTrace();
         }
     }
 
-    public void terminate() {
-        try {
-            this.serverSocket.close();
-        } catch (IOException e) {
-            e.getStackTrace();
+    private static class ClientHandler implements Runnable {
+        private final Socket clientSocket;
+
+        public ClientHandler(Socket clientSocket) {
+            this.clientSocket = clientSocket;
         }
-    }
 
-//    public static void main(String[] args) {
-//        Server server = new Server(1234);
-//        server.service();
-//    }
+        @Override
+        public void run() {
+            try {
+                // 클라이언트와의 통신을 위한 입출력 스트림 생성
+                InputStream input = clientSocket.getInputStream();
+                OutputStream output = clientSocket.getOutputStream();
 
-    @Override
-    public void run() {
-        service();
-        terminate();
+                // 예시: 간단한 에코 서버
+                byte[] buffer = new byte[1024];
+                int bytesRead;
+
+                while ((bytesRead = input.read(buffer)) != -1) {
+                    // 읽은 데이터를 클라이언트에게 다시 전송
+                    output.write(buffer, 0, bytesRead);
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    // 클라이언트 소켓 닫기
+                    clientSocket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }
