@@ -2,9 +2,9 @@ package networking.quiz.quiz11;
 
 import java.net.Socket;
 
-public final class ClientThread extends Thread {
+public final class ClientHandleThread extends Thread {
 
-    public ClientThread(Thread client, Socket socket) {
+    public ClientHandleThread(Thread server, Socket socket) {
         System.out.println("This is ClientThread constructor");
     }
 
