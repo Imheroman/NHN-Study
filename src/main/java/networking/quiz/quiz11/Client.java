@@ -32,16 +32,15 @@ public final class Client implements Runnable {
 
     @Override
     public void run() {
-        try (BufferedInputStream fromServer = new BufferedInputStream(socket.getInputStream());
-             BufferedOutputStream toServer = new BufferedOutputStream(socket.getOutputStream());
-             BufferedReader terminalIn = new BufferedReader(new InputStreamReader(System.in));
-             BufferedWriter terminalOut = new BufferedWriter(new OutputStreamWriter(System.out));
+        try (
+//                BufferedInputStream fromServer = new BufferedInputStream(socket.getInputStream());
+                BufferedOutputStream toServer = new BufferedOutputStream(socket.getOutputStream());
+                BufferedReader terminalIn = new BufferedReader(new InputStreamReader(System.in));
+//                BufferedWriter terminalOut = new BufferedWriter(new OutputStreamWriter(System.out));
         ) {
             String line;
             StringBuilder sb = new StringBuilder().append(getName() + " >> ");
             int nameLength = getName().length() + " >> ".length();
-//            byte[] buffer = new byte[bufferSize];
-//            int length = -1;
 
             while (!(line = terminalIn.readLine()).isEmpty()) {
                 sb.append(line).append('\n');
@@ -54,13 +53,6 @@ public final class Client implements Runnable {
             line = getName() + "이 퇴장하였읍니다." + '\n';
             toServer.write(line.getBytes());
             toServer.flush();
-//            while ((length = fromServer.read(buffer)) > 0) {
-//                terminalOut.write(new String(buffer, 0, length) + '\n');
-//                terminalOut.flush();
-//
-//                String line = "From " + this.getName() + " >> " + terminalIn.readLine() + '\n';
-//                toServer.write(line.getBytes());
-//            }
         } catch (IOException e) {
             e.getStackTrace();
         }

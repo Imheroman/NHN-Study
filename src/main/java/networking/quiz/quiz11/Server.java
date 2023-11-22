@@ -8,13 +8,12 @@ import java.util.List;
 
 public class Server {
     private final ServerSocket serverSocket;
-    public static Socket socket;
-    private final int bufferSize = 2048;
     public static final int serverPort = 1234;
+    private final List<Thread> clientHandlerThreads;
 
     public Server() {
         this.serverSocket = reuseServerOn();
-        System.out.println("The server opens.");
+        this.clientHandlerThreads = new ArrayList<>();
         serverStart();
     }
 
@@ -23,6 +22,7 @@ public class Server {
         try {
             serverSocket = new ServerSocket(serverPort);
             serverSocket.setReuseAddress(true); // port를 다시 사용할 수 있음
+            System.out.println("The server opens.");
         } catch (IOException e) {
             System.err.println("서버에 연결할 수 없읍니다.");
         }
@@ -32,16 +32,13 @@ public class Server {
 
     private void serverStart() {
         try {
-            this.socket = this.serverSocket.accept();
-            BufferedInputStream input = new BufferedInputStream(socket.getInputStream());
-            BufferedWriter terminalOut = new BufferedWriter(new OutputStreamWriter(System.out));
-            byte[] buffer = new byte[bufferSize];
-            int length = -1;
+            while (true) {
+                Socket socket = this.serverSocket.accept();
+                Thread clientHandleThread = new networking.quiz.quiz11.ClientHandleThread(this, socket);
+                clientHandlerThreads.add(clientHandleThread);
+                clientHandleThread.start();
 
-            while ((length = input.read(buffer)) > 0) {
-                terminalOut.write(new String(buffer, 0, length));
-                terminalOut.flush();
-//                System.out.println(new String(buffer, 0, length));
+                System.out.println("현재 채팅방 이용자: " + clientHandlerThreads.size() + "명 입니다.");
             }
         } catch (IOException e) {
             e.getStackTrace();
