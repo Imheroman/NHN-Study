@@ -1,0 +1,131 @@
+== 23.11.22(수) CSS
+
+== CSS란
+
+* Cascading
+* 문서의 표현을 기술하는 스타일 시트 언어
+
+== CSS 적용 방법
+
+=== Inline
+
+* 각 태그마다 스타일을 모두 적어야 하므로 관리가 쉽지 않다.
+* 우선 순위가 가장 높기 때문에 특별한 경우가 아니면 쓰지 말아야 한다.
+* 메일 본문 스타일을 만들 때 주로 사용?
+
+[source,html]
+----
+<div style="display: none;"></div>
+----
+
+=== Embeded
+
+* 보통 head안에 Style을 감싸서 넣음
+* CSS가 간단한 페이지 일 경우 사용
+* 사용자에게 초기 로딩시 보여주는 화면을 구성할 때 사용
+
+[source,html]
+----
+<head>
+    <style>
+        div {display: none;}
+    </style>
+</head>
+----
+
+=== External
+
+* 별도의 CSS 파일로 분리
+* 관심사 분리와 재사용이 가능
+* 가장 많이 사용하는 방법
+
+[source,html]
+----
+<link rel="stylesheet" href=""../src/css/index.css>
+----
+
+=== CSS 상속
+
+[source,html]
+----
+<div style = "color: yellow;"">
+    <div></div> <!-- 부모 Element에 적용된 style이 자식 Element에 적용된다. -->
+</div>
+
+<!-- Element의 속성 > 부모 Element의 속성 > 브라우저 기본 속성 -->
+----
+
+=== CSS 상속되는 속성과 상속되지 않는 속성
+
+[cols=",",options="header",]
+|===
+|속성 |상속여부
+|width/height |no
+|margin |no
+|padding |no
+|border |no
+|box-sizing |no
+|display |no
+|visibility |yes
+|opacity |yes
+|background |no
+|font |yes
+|color |yes
+|line-height |yes
+|text-align |yes
+|vertical-align |no
+|text-decoration |no
+|white-space |yes
+|position |no
+|top/right/bottom/left |no
+|z-index |no
+|overflow |no
+|float |no
+|===
+
+[source,html]
+----
+<!-- CSS 상속 관련 예제 HTML -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    .main{
+        /*상속안됨*/
+        margin:20px;
+        border-width: 1px;
+        border-color:red;
+        border-style:solid;
+        width:500px;
+        height:500px;
+
+        /*상속됨*/
+        color:red;
+        font-size:20pt;
+        text-align:center;
+    }
+    .sub{
+        /*상속안되는 속성*/
+        border-width:1px;
+        border-style:solid;
+        border-color:green;
+        width:200px;
+        height:200px;
+    }
+  </style>
+</head>
+<body>
+  <div class="main">
+    <p>div-main</p>
+    <div class="sub">
+        <span>div-sub</span>
+    </div>
+    <p>button tag는 color, font-size, text-align:ceter 상속안되는 element</p>
+    <button>버튼</button>
+  </div>
+</body>
+</html>
+----
+
+…
