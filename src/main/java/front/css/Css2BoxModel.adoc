@@ -1,0 +1,515 @@
+== 23.11.23(목) CSS2 박스모델
+
+=== 박스 모델
+
+* 웹 문서의 내용을 박스 형태로 정의하는 방법, CSS 레이아웃의 기본이 되는 개념
+* 브라우저가 Element를 렌더링할 때 참고하는 값
+
+==== 박스 모델 구성 요소
+
+* Margin: 바깥 여백
+* Border: 테두리
+* Padding: 안쪽 여백
+* Content: 내용
+
+.Box Model
+image::./images/1.boxModel.png[Box Model]
+
+==== CSS없을 때 box size property
+
+* *width + padding + border = actual width of an element*
+* *height + padding + border = actual height of an element*
+
+==== Box-sizing: content-box
+
+내용을 기준으로 Element 기준을 잡음
+
+* border-left:20px;
+* border-right:20px;
+* content: 500px
+* *total:540px*
+
+.Content Box Size
+image::./images/2.contentBoxSize.png[Content Box Size]
+
+==== Box-sizing: border-box
+
+테두리부터 기준으로 Element 크기를 잡음
+
+* border-left:20px;
+* border-right:20px;
+* content = 460px
+* *total:500px*
+
+.Border Box Size
+image::./images/3.borderBoxSize.png[Border Box Size]
+
+==== background-clip
+
+* 배경을 채워줄 범위 지정
+* 박스 모델 구성요소를 살펴보기 좋은 속성
+
+[source,html]
+----
+<!-- Example
+selector {
+    background-clip: <background-clip 속성>;
+}
+-->
+
+<style>
+    div {
+        box-sizing: border-box;
+        width: 500px;
+        margin: 20px 0px;
+        padding: 20px;
+        border: 10px dotted #dadada; background-color: #eeeeee;
+    }
+    .borderbox {
+        background-clip: border-box;
+    }
+    .paddingbox {
+        background-clip: padding-box;
+    }
+    .contentbox {
+        background-clip: content-box;
+    }
+</style>
+
+<div class="borderbox">background-clip: border-box;</div>
+<div class="paddingbox">background-clip: padding-box;</div>
+<div class="contentbox">background-clip: content-box;</div>
+----
+
+[cols=",",options="header",]
+|===
+|Background-clip 속성 |설명
+|border-box |테두리 영역과 그 안쪽 영역
+|padding-box |안쪽 여백 영역과 그 안쪽 영역
+|content-box |내용 영역과 그 안쪽 영역
+|initial |기본 값으로 설정
+|inherit |부모 요소의 속성값을 상속 받음
+|===
+
+.Background-Clip
+image::./images/4.backgroundClip.png[Background-Clip]
+
+==== width, height
+
+[source,html]
+----
+<style type="text/css">
+    .box{
+      width:250px;
+      height:300px;
+      background: blue;
+    }
+  </style>
+
+  <div class="box"></div>
+
+<style type="text/css">
+  .box{
+    width:100%;
+    height:300px;
+    background: blue;
+  }
+</style>
+<div class="box"></div>
+----
+
+==== Margin
+
+parameter의 개수에 따라 적용 범위가 달라짐
+
+[source,html]
+----
+<!-- 1개: 상하좌우 값 설정 -->
+.center{
+margin: 10px;
+}
+
+<!-- 2개: 상하, 좌우 값 설정 -->
+.center{
+    margin: 10px 0;
+}
+
+<!-- 3개: 상, 좌우, 하 값 설정 -->
+.center{
+margin: 10px; 5px; 0;
+}
+
+<!-- 4개: 상, 우, 하, 좌 값 설정 -->
+.center{
+    margin:10px 5px 5px 0;
+}
+
+<style>
+    body{
+        margin:0px;
+        padding:0px;
+        text-align:center;
+        font-size: 20pt;
+    }
+    .header{
+        width:100%;
+        height:100px;
+        background-color: aqua;
+        margin: 0px;
+        padding: 0px;
+        line-height: 100px;
+    }
+    .box{
+        width: 32%;
+        height:100px;
+        background-color: red;
+        line-height: 100px;
+    }
+
+    .footer{
+        background-color: aqua;
+        width:100%;
+        height:100px;
+        line-height: 100px;
+    }
+
+    .center{
+        margin:2%;
+    }
+
+    or
+
+    .center{
+        /* 4개속성 top right bottom left 시계방향 */
+        margin 1opx, 5px, 10px, 5px;
+    }
+
+    or
+
+    .center{
+        /* 3개속성 top, right&left, bottom */
+        margin:10px 5, 0;
+    }
+    or
+
+    .center{
+        /* 2개속성 top&bottom, right&left */
+        margin:10px 0;
+    }
+
+    or
+
+    .center{
+        /* 1개속성 top right bottom left 모두 */
+        margin:10px;
+    }
+
+</style>
+
+<div style="width:100%; height:100%;">
+    <div class="header">header</div>
+    <div class="box" style="float:left">left</div>
+    <div class="box center" style="float:left">center</div>
+    <div class="box" style="float:right">right</div>
+    <div class="footer" style="width:100%; clear:both;">footer</div>
+</div>
+
+<!-- 각각 따로 지정 -->
+margin-top:10px;
+margin-left:10px;
+margin-bottom:10px;
+margin-right:10px;
+
+<style>
+    .box{
+        width: 100%;
+        height: 100px;
+        background-color: green;
+        line-height: 100px;
+        font-size: 20pt;
+        text-align: center;
+        color: whitesmoke;
+    }
+    .target{
+        background-color:blue;
+        margin-top:10px;
+    }
+
+    or
+    .target{
+        background-color:blue;
+        margin-left:10px;
+    }
+    or
+    .target{
+        background-color:blue;
+        margin-bottom:10px;
+    }
+    or
+    .target{
+        background-color:blue;
+        margin-right:10px;
+        /* width:100% 임으로 margin-right 동작하지 않음 */
+    }
+</style>
+
+<div class="box">box</div>
+<div class="box target">target</div>
+<div class="box">box</div>
+----
+
+==== Padding
+
+parameter의 개수에 따라 적용 범위가 달라짐
+
+[source,html]
+----
+<!-- 1개: 상하좌우 값 설정 -->
+.box { padding:10px; }
+
+<!-- 2개: 상하, 좌우 값 설정 -->
+.box{ padding:10px 0; }
+
+<!-- 3개: 상, 좌우, 하 값 설정 -->
+.box{ padding:10px 5px 10px; }
+
+<!-- 4개: 상, 우, 하, 좌 값 설정 -->
+.box{ padding: 10px 5px 10px 5x; }
+
+<style>
+    .box {
+         width: 400px;
+         height: 200px;
+         background: #5F6DC7;
+         border: 1px solid #000;
+     }
+
+     .target {
+         width: 100%;
+         height: 100%;
+         border: 1px solid #000;
+         background: #00A2FF;
+     }
+
+     /* 4개속성 top right bottom left 시계방향 */
+    .box{
+    padding: 10px 5px 10px 5x;
+    }
+     or
+     /* 3개속성 top, right&left, bottom */
+    .box{
+        padding:10px 5px 10px;
+    }
+    or
+    /* 2개속성 top&bottom, right&left */
+    .box{
+        padding:10px 0;
+    }
+    or
+     /* 한 개 값 : 상하좌우 값  모두 설정 */
+    .box {
+        padding:10px;
+    }
+
+</style>
+
+<div class="box">
+    <div class="target"></div>
+</div>
+
+<!-- 각각 따로 지정 -->
+padding-top:20px;
+padding-bottom:10px;
+padding-left:10px;
+padding-right:10px;
+<style>
+    .box {
+         width: 180px;
+         height: 90px;
+         background: aqua;
+         border: 1px solid #000;
+
+     }
+
+     .box{
+         padding-top:20px;
+     }
+    or
+    .box{
+        padding-bottom: 10px;
+    }
+    or
+    .box{
+        padding-left:10px;
+    }
+    or
+    .box{
+        padding-right:10px;
+    }
+ </style>
+
+<div class="box">Yesterday all my troubles seems so far away. now it looks as they are here to stay oh I believe in yesterday.</div>
+----
+
+.Margin Padding
+image::images/5.marginPadding.png[Margin Padding]
+
+=== Border
+
+* 박스 모델의 테두리를 지정
+* line-style
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Border-style 사용 가능 속성 |설명
+|none |hidden 키워드와 마찬가지로 테두리를 표시하지 않습니다.
+background-image를 지정하지 않았으면 해당 면의 border-width 계산값은
+지정값을 무시하고 0이 됩니다. 표에서, 칸의 테두리 상쇄 시 none은 제일
+낮은 우선순위를 가집니다. 따라서 주변 칸이 테두리를 가진다면 테두리를
+그립니다.
+
+|hidden |none 키워드와 마찬가지로 테두리를 표시하지 않습니다.Unless a
+background-image를 지정하지 않았으면 해당 면의 border-width 계산값은
+지정값을 무시하고 0이 됩니다. 표에서, 칸의 테두리 상쇄 시 hidden은 제일
+높은 우선순위를 가집니다. 따라서 주변 칸이 테두리를 가지더라도 그리지
+않습니다.
+
+|dotted |테두리를 둥근 점 여러개로 그립니다. 점 간격은 명세에서 지정하지
+않으며 구현마다 다릅니다. 점의 반지름은 해당 면 border-width의
+절반입니다.
+
+|dashed |테두리를 직사각형 여러개로 그립니다. 사각형의 크기와 길이는
+명세에서 지정하지 않으며 구현마다 다릅니다.
+
+|solid |테두리를 하나의 직선으로 그립니다.
+
+|double |테두리를 두 개의 평행한 직선으로 그립니다.
+
+|groove |테두리가 파인 것처럼 그립니다.ridge의 반대입니다.
+
+|ridge |테두리가 튀어나온 것처럼 그립니다. groove의 반대입니다.
+
+|inset |요소가 파인 것처럼 테두리를 그립니다.outset의 반대입니다.
+border-collapse가 collapsed인 칸에서는 groove와 동일합니다.
+
+|outset |요소가 튀어나온 것처럼 그립니다. inset의 반대입니다.
+border-collapse가 collapsed인 칸에서는 ridge와 동일합니다.
+|===
+
+[source,html]
+----
+<style>
+    table {
+      border-width: 3px;
+      background-color: #52E396;
+  }
+  tr, td {
+      padding: 2px;
+      width:150px;
+      height:150px;
+      text-align: center;
+  }
+
+/* border-style 예제 클래스 */
+.b1 {border-style:none;}
+.b2 {border-style:hidden;}
+.b3 {border-style:dotted;}
+.b4 {border-style:dashed;}
+.b5 {border-style:solid;}
+.b6 {border-style:double;}
+.b7 {border-style:groove;}
+.b8 {border-style:ridge;}
+.b9 {border-style:inset;}
+.b10 {border-style:outset;}
+</style>
+
+<table>
+    <tr>
+      <td class="b1">none</td>
+      <td class="b2">hidden</td>
+      <td class="b3">dotted</td>
+      <td class="b4">dashed</td>
+    </tr>
+    <tr>
+      <td class="b5">solid</td>
+      <td class="b6">double</td>
+      <td class="b7">groove</td>
+      <td class="b8">ridge</td>
+    </tr>
+    <tr>
+      <td class="b9">inset</td>
+      <td class="b10">outset</td>
+    </tr>
+  </table>
+----
+
+* 두께, 스타일, 색상 표시
+
+[source,html]
+----
+<style>
+
+    .box {
+        width: 200px;
+        height: 200px;
+        background:#CDEFDE;
+        border: dotted red 5px;
+    }
+
+    /*
+    or
+
+    .box{
+        width: 200px;
+        height: 200px;
+        background:#CDEFDE;
+        border: dotted;
+        border-color:red;
+        border-width: 5px;
+    }
+    */
+</style>
+
+<div class="box"></div>
+
+<!-- 상하좌우를 구분하여 표시 -->
+border-top-left-radius : 10px;
+border-top-right-radius : 10px;
+border-bottom-left-radius : 10px;
+border-bottom-right-radius : 10px;
+<style>
+
+    .box {
+            width: 200px;
+            height: 200px;
+            background:#CDEFDE;
+            border-width: 5px;
+            border-color: red;
+    }
+
+    .box{
+        border-top-style: dotted;
+    }
+
+    /*
+    .box{
+        border-bottom-style: dotted;
+    }
+
+    .box{
+        border-left-style: dotted;
+    }
+
+    .box{
+        border-right-style: dotted;
+    }*/
+
+</style>
+
+<div class="box"></div>
+----
+
+.Box border
+image::images/6.boxBorder.png[Box border]
+
+…
