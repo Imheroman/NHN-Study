@@ -26,9 +26,9 @@
 | 11월 18일 |
 | https://28-dd.tistory.com/9[11월 19일] | 블로그 작성
 ||
-| https://github.com/Imheroman/NHN-Study/tree/young/src/main/java/networking[11월 20일] |DB Query assignment + network 공부(adoc04, Exam03, Quiz07 완료)
-| https://github.com/Imheroman/NHN-Study/tree/young/src/main/java/networking[11월 20일] | netwrok 마무리
-| 11월 22일 |
+| https://github.com/Imheroman/NHN-Study/tree/young/src/main/java/networking[11월 20일] | DB Query assignment + network 공부(adoc04, Exam03, Quiz07 완료)
+| https://github.com/Imheroman/NHN-Study/tree/young/src/main/java/networking[11월 21일] | netwrok 마무리
+| 11월 22일 | https://github.com/Imheroman/NHN-Study/tree/young/src/main/java/front/html[HTML], https://github.com/Imheroman/NHN-Study/tree/young/src/main/java/front/css[CSS]
 | 11월 23일 |
 | 11월 24일 |
 | 11월 25일 |
