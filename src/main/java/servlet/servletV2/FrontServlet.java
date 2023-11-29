@@ -1,4 +1,4 @@
-package servlet.servletV2.servlets;
+package servlet.servletV2;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -14,6 +14,13 @@ import java.io.IOException;
 @WebServlet(name = "frontServlet", urlPatterns = "*.do")
 public class FrontServlet extends HttpServlet {
     private static final String REDIRECT_PREFIX = "redirect:";
+    private static final String[][] addresses = {
+            {"/student/list.do", "/student/list"},
+            {"/student/delete.do", "/student/delete"},
+            {"/student/register.do", "/student/register"},
+            {"/student/view.do", "/student/view"},
+            {"/student/update.do", "/student/update"}
+    };
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
@@ -52,6 +59,16 @@ public class FrontServlet extends HttpServlet {
 
     private String resolveServlet(String servletPath) {
         String processingServletPath = null;
+
+//        for (int i = 0; i < addresses.length; i++) {
+//            String path = addresses [i][0];
+//
+//            if (path.equals(servletPath)) {
+//                processingServletPath = addresses[i][1];
+//            }
+//        }
+//
+//        return processingServletPath;
 
         if ("/student/list.do".equals(servletPath)) {
             processingServletPath = "/student/list";

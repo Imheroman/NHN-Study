@@ -1,4 +1,4 @@
-package servlet.servletV2.servlets;
+package servlet.servletV2;
 
 import lombok.extern.slf4j.Slf4j;
 import student.MapStudentRepository;
@@ -18,7 +18,8 @@ public class StudentViewServlet extends HttpServlet {
 
     @Override
     public void init(ServletConfig config) {
-        this.mapStudentRepository = (MapStudentRepository) config.getServletContext().getAttribute("studentRepository");
+        this.mapStudentRepository = (MapStudentRepository) config
+                .getServletContext().getAttribute("studentRepository");
     }
 
     @Override
@@ -34,7 +35,7 @@ public class StudentViewServlet extends HttpServlet {
             req.setAttribute("student", mapStudentRepository.getStudentById(id));
 
             //TODO: view attribute 설정 - /student/view.jsp
-            req.setAttribute("view", "redirect:/studentWeb/view.jsp");
+            req.setAttribute("view", "/studentWeb/view.jsp");
         } else {
             throw new IllegalArgumentException("The id is not existed");
         }

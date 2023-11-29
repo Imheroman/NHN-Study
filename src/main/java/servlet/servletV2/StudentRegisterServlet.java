@@ -1,4 +1,4 @@
-package servlet.servletV2.servlets;
+package servlet.servletV2;
 
 import student.Gender;
 import student.MapStudentRepository;
@@ -25,11 +25,8 @@ public class StudentRegisterServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        //todo view attribute 설정 - /student/register.jsp
-        req.setAttribute("view", "/student/register.jsp");
-//        req.setAttribute("studentList", mapStudentRepository.getStudents());
-//        RequestDispatcher rd = req.getRequestDispatcher("/studentWeb/register.jsp");
-//        rd.forward(req, res);
+        //TODO: view attribute 설정 - /student/register.jsp
+        req.setAttribute("view", "/studentWeb/register.jsp");
     }
 
     @Override
@@ -53,14 +50,7 @@ public class StudentRegisterServlet extends HttpServlet {
         }
         mapStudentRepository.save(new Student(id, name, gender, age));
 
-        //TODO: redirect /student/view?id=student1
-//        req.setAttribute("studentList", mapStudentRepository.getStudents());
-//        RequestDispatcher rd = req.getRequestDispatcher("/studentWeb/view.jsp");
-//        rd.forward(req, res);
-
         //TODO: redirect view attribute 설정
-        req.setAttribute("view", "redirect/student/view?id=" + id);
-//        req.setAttribute("view", "redirect:/student/view.jsp");
-//        res.sendRedirect("/student/view?id="+id);
+        req.setAttribute("view", "redirect/studentWeb/view?id=" + id);
     }
 }

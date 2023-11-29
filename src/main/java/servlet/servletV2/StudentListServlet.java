@@ -1,4 +1,4 @@
-package servlet.servletV2.servlets;
+package servlet.servletV2;
 
 import lombok.extern.slf4j.Slf4j;
 import student.Student;
@@ -29,7 +29,7 @@ public class StudentListServlet extends HttpServlet {
         req.setAttribute("studentList", studentList);
 
         //TODO: view attribute - /student/list.jsp
-        req.setAttribute("view", "redirect:/studentWeb/list.jsp");
+        req.setAttribute("view", "/studentWeb/list.jsp");
 //        RequestDispatcher rd = req.getRequestDispatcher("/studentWeb/list.jsp");
 //        rd.forward(req, res);
     }

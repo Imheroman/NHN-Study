@@ -1,4 +1,4 @@
-package servlet.servletV2.servlets;
+package servlet.servletV2;
 
 import lombok.extern.slf4j.Slf4j;
 import student.StudentRepository;
@@ -41,6 +41,7 @@ public class StudentDeleteServlet extends HttpServlet {
         }
 
         //TODO: redirect:/student/list.do 적용
-        res.sendRedirect("redirect:/student/list.do");
+        req.setAttribute("view", "redirect:/student/list.do");
+//        res.sendRedirect("redirect:/student/list.do");
     }
 }

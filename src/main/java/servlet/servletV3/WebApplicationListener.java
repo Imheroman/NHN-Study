@@ -1,4 +1,4 @@
-package servlet.servletV2.servlets;
+package servlet.servletV3;
 
 import student.Gender;
 import student.MapStudentRepository;

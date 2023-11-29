@@ -1,4 +1,4 @@
-package servlet.servletV1.servlets;//package student2;
+//package servlet.servletV1;
 //
 //import javax.servlet.RequestDispatcher;
 //import javax.servlet.ServletException;

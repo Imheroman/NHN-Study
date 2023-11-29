@@ -1,4 +1,4 @@
-package servlet.servletV1.servlets;//package student2;
+package servlet;//package student2;
 //
 //import java.util.List;
 //

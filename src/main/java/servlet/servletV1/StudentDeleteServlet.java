@@ -1,4 +1,4 @@
-package servlet.servletV1.servlets;//package student2;
+package servlet.servletV1;//package student2;
 //
 //import lombok.extern.slf4j.Slf4j;
 //

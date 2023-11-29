@@ -1,4 +1,4 @@
-package servlet.servletV2.servlets;
+package servlet.servletV2;
 
 import student.Gender;
 import student.MapStudentRepository;
@@ -30,7 +30,7 @@ public class StudentUpdateServlet extends HttpServlet {
         req.setAttribute("student", student);
 
         //TODO: view attribute 설정 - /student/register.jsp
-        req.setAttribute("view", "/student/register.jsp");
+        req.setAttribute("view", "/studentWeb/register.jsp");
     }
 
     @Override

@@ -1,4 +1,4 @@
-package servlet.servletV2.servlets;
+package servlet.servletV2;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
