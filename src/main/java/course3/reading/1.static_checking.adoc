@@ -1,0 +1,121 @@
+= 23.12.11(월) Reading1: Static Checking
+
+Java는 Statically-type language이기 때문에 모든 변수의 자료형(type)은 컴파일 시간에 알 수 있다.
+
+== 오류를 잡아내는 3가지 방법
+
+* 정점 검사 (Static checking)
+* 동적 검사 (Dynamic checking)
+* 검사 안 함 (No checking)
+
+=== 정적 검사 (Static checking)
+
+* 문법오류, 들여쓰기 등으로 발견할 수 있는 에러들
+* 함수의 이름 잘못 작성하거나, 파라미터의 수를 잘못 입력하거나, 잘못된 type을 파라미터로 주었을 때 등 e.g. Math.sine() → Math.sin(), Math.sin(30, 20) → Math.sin(30) …
+* return type이 int인데 String을 반환했을 때 등
+
+=== 동적 검사 (Dynamic checking)
+
+* 범위를 벗어난 인덱스 참조
+* null 객체 참조 등
+
+== Primitive types은 진정한 숫자가 아니다.
+
+* Primitive type은 우리가 익숙한 정수와 실수같이 동작을 하지 않는 특수한 경우가 있다.
+
+=== Integer division
+
+* 정수의 나눗셈에서 5/2는 분수를 반환되지 않고, 나눗셈의 몫만 반환한다.
+
+=== Integer overflow
+
+* int와 long type은 실제로 최댓값과 최솟값이 있는 유한한 정수 집합이다.
+때문에 잘못된 범위의 값이 나오는 계산을 한다면, 정확히 계산된 결과가 나오지 않는다.
+
+=== Special values in float and doubles
+
+* float와 double 타입에는 실수가 아닌 몇 가지 특수 값이 있습니다: *NaN*
+(Not a Number의 약자), *POSITIVE_INFINITY*, *NEGATIVE_INFINITY*.
+* 따라서 0으로 나누거나 음수의 제곱근을 구하는 것과 같이 동적 오류를 발생시킬 것으로 예상되는 연산은 대신 이러한 특수 값 중 하나를 생성하고, 결국 최종적으로 나쁜(옳지 않는?) 답이 나온다.
+
+== Arrays and Collections
+
+* 배열은 T type의 고정된 길이를 갖는 sequence이다.
+* ArrayList는 클래스로, List의 연산을 실제로 구현한 타입이다.
+* List<>는 오직 객체 타입만 다룰 줄 알고, Object 타입은 다루지 못한다.
+
+== Iterating (반복문)
+
+== method
+
+* 일반적으로 명령문은 메소드 내부에 있어야 한다.
+* 모든 메소드는 클래스 내부에 있어야 한다.
+* static method는 object에 의해 호출되는 것이 아니라, 클래스로 호출한다.
+* 주석(자바독)은 메소드의 사양을 설명하는 것으로, 작업의 입력과 출력을 설명한다. 이는 간결하고 정확해야 한다. e.g. Assumes n > 0
+
+[source,java]
+----
+public class Hailstone {
+  /**
+   * Compute a hailstone sequence.
+   * @param n  Starting number for sequence.  Assumes n > 0.
+   * @return hailstone sequence starting with n and ending with 1.
+   */
+  public static List<Integer> hailstoneSequence(int n) {
+    List<Integer> list = new ArrayList<Integer>();
+    while (n != 1) {
+        list.add(n);
+        if (n % 2 == 0) {
+            n = n / 2;
+        } else {
+            n = 3 * n + 1;
+        }
+    }
+    list.add(n);
+    return list;
+  }
+}
+----
+
+== Mutating Value vs Reassigning Variables (값 변경 vs 변수 재 할당)
+
+* 불변 타입은 한번 생성된 후에 절대로 변경되지 않는 타입이다.
+
+== Hackking vs Engineering
+
+=== Bad things
+
+* 많은 코드들을 테스트하지 않고 작성
+* 모든 세부사항을 코드에 적어놓지 않고 머릿속에만 유지함
+* 버그가 없거나 찾고 고치기 쉬울 것이라고 가정
+
+=== Good things
+
+* 한 번에 조금씩 작성하고, 진행하면서 테스트했다.
+* 코드가 의존하는 가정을 문서화했다.
+
+== 6.005 목표
+
+* *버그로 부터 안전함* → 정확성(현재의 올바른 동작), 방어성(미래의 올바른 동작)
+* *이해하기 쉬움* → 미래의 프로그래머가 버그를 고치거나 새로운 기능 추가가 쉽도록 (그 미래의 프로그래머가 내가 될 수 있음)
+* *변화에 대비* →소프트웨어는 항상 변한다.
+
+== 현재 과정에서 Java를 사용하는 이유
+
+=== Safety (안전성)
+
+* Java는 정적 검사를 한다. (주로 type checking, 외에도 return type checking 등)
+
+=== Ubiquity (어디에나 사용 가능)
+
+* 자바는 웹 프로그래밍에 사용될 수 있고, 안드로이드 프로그래밍에서도 사용될 수 있다.
+
+=== 이 과정에서 가장 중요한 교훈은 언어의 유행에서 살아남는 것: 명확성, 추상화, 엔지니어링 본능
+
+== Summary
+
+=== 주요 개념은 static checking(정적 검사)
+
+* 버그로부터 안전함
+* 이해하기 쉬움
+* 변경에 대비
